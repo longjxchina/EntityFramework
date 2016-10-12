@@ -198,9 +198,8 @@ namespace Microsoft.EntityFrameworkCore
                 model.SqlServer().GetOrAddSequence(name, schema).IncrementBy = 10;
             }
 
-            property.SqlServer().ValueGenerationStrategy = SqlServerValueGenerationStrategy.SequenceHiLo;
-            property.ValueGenerated = ValueGenerated.OnAdd;
-            property.RequiresValueGenerator = true;
+            propertyBuilder.Metadata.SqlServer().ValueGenerationStrategy = SqlServerValueGenerationStrategy.SequenceHiLo;
+
             property.SqlServer().HiLoSequenceName = name;
             property.SqlServer().HiLoSequenceSchema = schema;
 
@@ -236,10 +235,6 @@ namespace Microsoft.EntityFrameworkCore
             var property = propertyBuilder.Metadata;
 
             property.SqlServer().ValueGenerationStrategy = SqlServerValueGenerationStrategy.IdentityColumn;
-            property.ValueGenerated = ValueGenerated.OnAdd;
-            property.RequiresValueGenerator = true;
-            property.SqlServer().HiLoSequenceName = null;
-            property.SqlServer().HiLoSequenceSchema = null;
 
             return propertyBuilder;
         }
